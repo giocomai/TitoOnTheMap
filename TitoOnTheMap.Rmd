@@ -77,7 +77,7 @@ countries <- c("slovenia", "croatia", "bosnia-herzegovina", "serbia", "montenegr
 
 for (i in countries) {
   if (file.exists(file.path("data", "pbf", paste0(i, "-latest.osm.pbf")))==FALSE) {
-    download.file(url = paste0("http://download.geofabrik.de/europe/", i, "-latest.osm.pbf"), destfile = file.path("data", paste0(i, "-latest.osm.pbf")))
+    download.file(url = paste0("http://download.geofabrik.de/europe/", i, "-latest.osm.pbf"), destfile = file.path("data", "pbf", paste0(i, "-latest.osm.pbf")))
   }
 }
 
