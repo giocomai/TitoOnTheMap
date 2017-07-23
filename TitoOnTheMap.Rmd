@@ -187,7 +187,7 @@ wb <- c(left = 12, bottom = 40, right = 26, top = 48)
 mapTonerLite <- get_stamenmap(bbox = wb, zoom = 6, maptype = "toner-lite") %>% ggmap()
 
 mapTonerLite + geom_point(data=tito_all, aes(x=lon, y=lat), color="red", size=2, alpha=0.5) +
-  labs(x = '', y = '') + ggtitle("Streets dedicated to Tito")
+  labs(x = '', y = '') + ggtitle("Streets and squares dedicated to Tito")
   
   ggsave("TitoTonerLight.png")
 
@@ -195,7 +195,7 @@ mapTonerLite + geom_point(data=tito_all, aes(x=lon, y=lat), color="red", size=2,
 mapG <- get_googlemap("Sarajevo", scale = 2, zoom = 6) %>% ggmap()
 
 mapG + geom_point(data=tito_all, aes(x=lon, y=lat), color="red", size=2, alpha=0.5) +
-  labs(x = '', y = '') + ggtitle("Streets dedicated to Tito")
+  labs(x = '', y = '') + ggtitle("Streets and squares dedicated to Tito")
 
 ggsave("TitoGmaps.png")
 
