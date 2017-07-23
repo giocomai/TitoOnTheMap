@@ -16,6 +16,10 @@ pacman::p_load(tidyverse, ggmap, scales, knitr, printr)
 
 ```
 
+## Preliminary remarks
+
+Please consider that this document should be considered draft until it is thoroughly verified, as it may include inaccuracies due to import or filtering issues. 
+
 ## Getting OpenStreetMaps packages
 
 Install [Osmconvert](http://wiki.openstreetmap.org/wiki/Osmconvert) and [Osmfilter](http://wiki.openstreetmap.org/wiki/Osmfilter)

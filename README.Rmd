@@ -5,7 +5,7 @@ output: github_document
 
 This repository hosts the file related to the project "TitoOnTheMap", aimed at finding all streets or squares dedicated to Tito according to OpenStreetMaps data.
 
-The main source file with all code and description is [TitoOnTheMap.Rmd](TitoOnTheMap.Rmd).
+The main source file with all code and description is [TitoOnTheMap.Rmd](TitoOnTheMap.Rmd). The code should be completely functional on any modern linux computer with R installed. It would need minor adjustments on other operating systems. 
 
 The output is available at [https://giocomai.github.io/TitoOnTheMap/](https://giocomai.github.io/TitoOnTheMap/)
 
