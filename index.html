@@ -143,7 +143,16 @@ $(document).ready(function () {
 
 <div id="preliminary-remarks" class="section level2">
 <h2>Preliminary remarks</h2>
-<p>Please consider that this document should be considered draft until it is thoroughly verified, as it may include inaccuracies due to import or filtering issues.</p>
+<p>This document should be considered draft until it is thoroughly verified. It currently includes substantial inaccuracies.</p>
+<p>As of 2017-07-23:</p>
+<ul>
+<li><p>In the current draft, many data points are repeated multiple times. This <a href="https://www.google.com/maps/d/viewer?mid=1o575c8xb_TncaQ4Rk8NIxIyNpfY&amp;ll=43.86474657972989%2C19.327976068483963&amp;z=7">overlay on Google Maps</a> shows clearly the issue with the current dataset.</p></li>
+<li><p>This means that the absolute number of streets given below is effectively meaningless, and reflects almost exclusively quirkiness of OpenStreetMaps data. Since sometimes the same street is recorded with slightly different names, with slightly different coordinates, the easiest way out of it is probably to keep only one data point per town (even if this would remove, for example, Titov Most in a city where another street dedicated to Tito is present). Other options may be considered</p></li>
+<li><p>In the meantime, when many dots are almost one over the other, they should mostly be considered as a single one. Overall, even a polished map would look quite similar.</p></li>
+<li><p>On the other hand, some streets may be missing: they may not be included in OpenStreetMaps, or I may have filtered them out my mistake. The data do not show any self-evident bias, but this does not mean they are correct.</p></li>
+<li><p>Mechanically querying Google Maps for each town in the region may offer more accurate results.</p></li>
+<li><p>Other ideas are welcome. Feel free to open an issue on the repository hosting this file <a href="https://github.com/giocomai/TitoOnTheMap/issues" class="uri">https://github.com/giocomai/TitoOnTheMap/issues</a>, or to get in touch via <a href="http://twitter.com/giocomai/">Twitter</a>.</p></li>
+</ul>
 </div>
 <div id="getting-openstreetmaps-packages" class="section level2">
 <h2>Getting OpenStreetMaps packages</h2>
@@ -240,7 +249,7 @@ for (i in countries) {
   # Merge table for each country
   tito_all &lt;- bind_rows(tito_all, temp_tito)
 }
-# remove duplicates
+# remove duplicate location with exactly same coordinates
 tito_all &lt;- tito_all %&gt;% distinct(lon, lat, .keep_all = TRUE)
 
 write_csv(x = tito_all %&gt;% distinct(), path = &quot;tito_coordinates.csv&quot;)</code></pre>
@@ -353,8 +362,9 @@ mapG + geom_point(data=tito_all, aes(x=lon, y=lat), color=&quot;red&quot;, size=
 # mapWatercolor + geom_point(data=tito_all, aes(x=lon, y=lat), color=&quot;red&quot;, size=2, alpha=0.5) +
 #   labs(x = '', y = '') + ggtitle(&quot;Streets dedicated to Tito&quot;)
 # ggsave(&quot;TitoWatercolor.png&quot;)</code></pre>
-<div id="summary-of-all-street-names-found" class="section level3">
-<h3>Summary of all street names found</h3>
+</div>
+<div id="summary-of-all-street-names-found" class="section level2">
+<h2>Summary of all street names found</h2>
 <p>N.B. Check if something is missing and update criteria</p>
 <pre class="r"><code>knitr::kable(tito_all %&gt;% select(country, streetname) %&gt;% group_by(country, streetname) %&gt;% count() %&gt;% arrange(country, desc(n), streetname))</code></pre>
 <table>
@@ -705,6 +715,9 @@ mapG + geom_point(data=tito_all, aes(x=lon, y=lat), color=&quot;red&quot;, size=
 </table>
 <pre class="r"><code>write_csv(x = tito_all %&gt;% select(country, streetname) %&gt;% group_by(country, streetname) %&gt;% count() %&gt;% arrange(country, desc(n), streetname), path = &quot;tito_streetnames.csv&quot;)</code></pre>
 </div>
+<div id="about-the-author" class="section level2">
+<h2>About the author</h2>
+<p>Giorgio Comai is on <a href="http://twitter.com/giocomai/">Twitter</a>. His website is <a href="https://giorgiocomai.eu/" class="uri">https://giorgiocomai.eu/</a></p>
 </div>
 
 

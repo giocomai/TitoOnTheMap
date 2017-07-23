@@ -18,7 +18,21 @@ pacman::p_load(tidyverse, ggmap, scales, knitr, printr)
 
 ## Preliminary remarks
 
-Please consider that this document should be considered draft until it is thoroughly verified, as it may include inaccuracies due to import or filtering issues. 
+This document should be considered draft until it is thoroughly verified. It currently includes substantial inaccuracies.
+
+As of 2017-07-23:
+
+- In the current draft, many data points are repeated multiple times. This [overlay on Google Maps](https://www.google.com/maps/d/viewer?mid=1o575c8xb_TncaQ4Rk8NIxIyNpfY&ll=43.86474657972989%2C19.327976068483963&z=7) shows clearly the issue with the current dataset.
+
+- This means that the absolute number of streets given below is effectively meaningless, and reflects almost exclusively quirkiness of OpenStreetMaps data. Since sometimes the same street is recorded with slightly different names, with slightly different coordinates, the easiest way out of it is probably to keep only one data point per town (even if this would remove, for example, Titov Most in a city where another street dedicated to Tito is present). Other options may be considered
+
+- In the meantime, when many dots are almost one over the other, they should mostly be considered as a single one. Overall, even a polished map would look quite similar. 
+
+- On the other hand, some streets may be missing: they may not be included in OpenStreetMaps, or I may have filtered them out my mistake. The data do not show any self-evident bias, but this does not mean they are correct. 
+
+- Mechanically querying Google Maps for each town in the region may offer more accurate results. 
+
+- Other ideas are welcome. Feel free to open an issue on the repository hosting this file [https://github.com/giocomai/TitoOnTheMap/issues](https://github.com/giocomai/TitoOnTheMap/issues), or to get in touch via [Twitter](http://twitter.com/giocomai/).
 
 ## Getting OpenStreetMaps packages
 
@@ -134,7 +148,7 @@ for (i in countries) {
   # Merge table for each country
   tito_all <- bind_rows(tito_all, temp_tito)
 }
-# remove duplicates
+# remove duplicate location with exactly same coordinates
 tito_all <- tito_all %>% distinct(lon, lat, .keep_all = TRUE)
 
 write_csv(x = tito_all %>% distinct(), path = "tito_coordinates.csv")
@@ -213,7 +227,7 @@ ggsave("TitoGmaps.png")
 
 ```
 
-### Summary of all street names found
+## Summary of all street names found
 
 N.B. Check if something is missing and update criteria
 
@@ -221,3 +235,7 @@ N.B. Check if something is missing and update criteria
 knitr::kable(tito_all %>% select(country, streetname) %>% group_by(country, streetname) %>% count() %>% arrange(country, desc(n), streetname))
 write_csv(x = tito_all %>% select(country, streetname) %>% group_by(country, streetname) %>% count() %>% arrange(country, desc(n), streetname), path = "tito_streetnames.csv")
 ```
+
+## About the author
+
+Giorgio Comai is on [Twitter](http://twitter.com/giocomai/). His website is [https://giorgiocomai.eu/](https://giorgiocomai.eu/)
