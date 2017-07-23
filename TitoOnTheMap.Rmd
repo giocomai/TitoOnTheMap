@@ -50,7 +50,7 @@ if (file.exists(file.path("osmconvert64"))==FALSE) {
 
 ## Getting the data from OpenStreetMaps
 
-Download all data for selected countries from [available repositorie])(http://download.geofabrik.de/europe.html).
+Download all data for selected countries from [available repositories](http://download.geofabrik.de/europe.html).
 
 ```{r}
 dir.create(path = "data", showWarnings = FALSE)
